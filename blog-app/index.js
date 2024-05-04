@@ -1,0 +1,11 @@
+const express =require("express")
+const app=express()
+require("dotenv").config()
+const dbconnect =require("./config/database")
+const PORT =process.env.PORT || 4000
+const blogsroutes =require("./routes/blog")
+app.use(express.json())
+app.use("/api/v1",blogsroutes)
+dbconnect()
+app.listen(PORT,()=>{console.log(`app is listening at port ${PORT}`)})
+app.get("/" ,(req,res)=>{res.send(`<h1>This is homepage </h1>`)})
